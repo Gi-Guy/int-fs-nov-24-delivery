@@ -85,6 +85,11 @@ body,
     height: 100%;
 }
 
+#root {
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     background: var(--background-50);
     color: var(--text-950);
@@ -93,4 +98,15 @@ body {
 
 img {
     display: block;
+}
+
+ul, ol, menu {
+    list-style: none;
+    padding: 0;
+}
+
+button {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
 }
