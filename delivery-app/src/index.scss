@@ -61,7 +61,7 @@
     --accent-900: hsl(23, 96%, 10%);
     --accent-950: hsl(24, 100%, 5%);
 
-
+    --root-justify-content: flex-start;
 }
 
 *,
@@ -88,6 +88,7 @@ body,
 #root {
     display: flex;
     flex-direction: column;
+    justify-content: var(--root-justify-content);
 }
 
 body {
@@ -105,8 +106,9 @@ ul, ol, menu {
     padding: 0;
 }
 
-button {
+button, input {
     font-size: inherit;
     font-family: inherit;
     color: inherit;
+    display: block;
 }

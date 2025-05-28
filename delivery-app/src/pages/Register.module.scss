@@ -1,0 +1,19 @@
+.nav {
+    text-align: center;
+    margin-block-start: -1.5em;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.passwordRules {
+    padding-inline: 1.5rem;
+    list-style: "❌";
+
+    li.satisfied {
+        list-style: "✅";
+    }
+}
