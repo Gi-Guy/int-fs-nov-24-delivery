@@ -19,7 +19,7 @@ function createToken(userId: string, userName: string ) {
 
 const register: RequestHandler = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, fullName, password } = req.body;
 
         if (!email) {
             res.status(400);
@@ -36,7 +36,11 @@ const register: RequestHandler = async (req, res) => {
         }
 
         // TODO: validate password
-        const newUser = await User.create({ email, password });
+        const newUser = await User.create({ email, fullName });
+
+        newUser.password = password;
+
+        await newUser.save();
 
         res.json({
             token: createToken(newUser.id, newUser.fullName),
@@ -64,9 +68,15 @@ const login: RequestHandler = async (req, res) => {
             return;
         }
 
-        const user = await User.findOne({ email, password });
+        const user = await User.findOne({ email }).schemaLevelProjections(false);
 
         if (!user) {
+            res.status(401);
+            res.end();
+            return;
+        }
+
+        if (!user.isSamePassword(password)) {
             res.status(401);
             res.end();
             return;
